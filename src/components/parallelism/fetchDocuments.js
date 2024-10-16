@@ -10,21 +10,21 @@ const fetchDocuments = async () => {
 
     docsSnap.forEach((doc) => {
       documents.push({
-        id: doc.id,
-        imageUrl: doc.imageUrl,
-        title: doc.title,
-        description: doc.description,
-        category: doc.category,
-        dateAdded: doc.dateAdded,
-        reference: doc.reference,
-        ...doc.data(),
+        id: doc?.id,
+        imageUrl: doc?.imageUrl,
+        title: doc?.title,
+        description: doc?.description,
+        category: doc?.category,
+        dateAdded: doc?.dateAdded,
+        reference: doc?.reference,
+        ...doc?.data(),
       });
     });
 
     return documents;
   } catch (error) {
     console.error("Error fetching documents: ", error);
-    return [];
+    throw new Error("Could not fetch exhibits in Globalization.");
   }
 };
 

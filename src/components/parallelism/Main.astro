@@ -2,7 +2,6 @@
 import { SITE_DESCRIPTION } from "../../consts";
 import { fetchDocuments } from "./fetchDocuments";
 const exhibits = await fetchDocuments();
-// console.log(exhibits);
 ---
 
 <section id="main">
@@ -73,7 +72,7 @@ const exhibits = await fetchDocuments();
       >
     </article>
     <article class="item thumb span-2">
-      <h2>{exhibits[11].title}</h2><a href={exhibits[11].imageUrl } class="image"
+      <h2>{exhibits[11].title}</h2><a href={exhibits[11].imageUrl} class="image"
         ><img src={exhibits[11].imageUrl} alt="" /></a
       >
     </article>
