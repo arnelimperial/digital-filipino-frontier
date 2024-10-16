@@ -35,7 +35,7 @@ jobs:
 
       - name: Add build output
         run: |
-          git add ./dist
+          git add -f ./dist
 
       - name: Commit changes
         run: git commit -m "Deploying latest build" || echo "No changes to commit"
