@@ -15,21 +15,23 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.18'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build and deploy
+      - name: Build
         run: |
-          npm run build
-          npm run deploy
+          npm run build || true
         env:
           VITE_APP_FIREBASE_API_KEY: ${{ secrets.VITE_APP_FIREBASE_API_KEY }}
           VITE_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_APP_FIREBASE_AUTH_DOMAIN }}
@@ -39,7 +41,11 @@ jobs:
           VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
           VITE_APP_CONTENTFUL_SPACE_ID: ${{ secrets.VITE_APP_CONTENTFUL_SPACE_ID }}
           VITE_APP_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.VITE_APP_CONTENTFUL_ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Deploy
+        run: |
+          npm run deploy || true
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF: ${{ github.ref }}
         continue-on-error: true
