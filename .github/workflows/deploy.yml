@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Change this according to your main branch
+    branches: [main]
 
 jobs:
   build:
@@ -11,13 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all history to support pulling
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.18'  # Match your local version
+          node-version: '20.18'
 
       - name: Install dependencies
         run: npm install
@@ -30,21 +28,19 @@ jobs:
           git config user.name "arnelimperial" 
           git config user.email "9pagemake7@gmail.com"
 
-      - name: Pull latest changes
-        run: git pull origin main  # Pull the latest changes from the main branch
+      - name: Pull latest changes (optional)
+        run: |
+          git pull origin main || echo "No changes to pull"
 
       - name: Add build output
         run: |
-          git add -f ./dist
+          git add -f ./dist   # Adjust this as necessary
 
       - name: Commit changes
         run: git commit -m "Deploying latest build" || echo "No changes to commit"
 
       - name: Push changes
-        run: git push origin main  # Push the latest changes to the main branch
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Ensure this points to where your build outputs
+        env:  # Set environment variables for authentication
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Using your Personal Access Token
+        run: |
+          git push https://USERNAME:${{ secrets.PAT_TOKEN }}@github.com/arnelimperial/digital-filipino-frontier.git main
