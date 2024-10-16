@@ -43,4 +43,4 @@ jobs:
         env:  # Set environment variables for authentication
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Using your Personal Access Token
         run: |
-          git push https://USERNAME:${{ secrets.PAT_TOKEN }}@github.com/arnelimperial/digital-filipino-frontier.git main
+          git push https://USERNAME:${{ secrets.PAT_TOKEN }}@github.com-arnelimperial/arnelimperial/digital-filipino-frontier.git main
