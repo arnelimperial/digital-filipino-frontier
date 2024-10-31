@@ -1,0 +1,62 @@
+---
+import Head from "../../../components/forty/Head.astro";
+import Header from "../../../components/forty/Header.astro";
+import Menu from "../../../components/forty/Menu.astro";
+import Contact from "../../../components/forty/Contact.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import Footer from "../../../components/forty/Footers.astro";
+
+// Extracting the current path and using it as a subtitle
+const currentPath = Astro.url.pathname; // e.g., "/about"
+const subtitle = currentPath.split('/').pop() || 'Home';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={SITE_TITLE} subTitle={ subtitle } description={SITE_DESCRIPTION} />
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header" class="alt">
+        <Header />
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <Menu />
+      </nav>
+
+      <!-- Slot -->
+      <slot />
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="inner">
+          <Contact />
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <Footer />
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <!-- jquery scripts located on the public dir -->
+    <script is:inline src="/forty/jquery.min.js"></script>
+    <script is:inline src="/forty/jquery.scrolly.min.js"></script>
+    <script is:inline src="/forty/jquery.scrollex.min.js"></script>
+    <script is:inline src="/forty/browser.min.js"></script>
+    <script is:inline src="/forty/breakpoints.min.js"></script>
+    <script src="../../../scripts/forty/util.js"></script>
+    <script is:inline src="/forty/main.js"></script>
+  </body>
+</html>
+
