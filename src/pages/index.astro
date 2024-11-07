@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 <!doctype html>
 <html lang="en">
   <head>
-    <Head title={ SITE_TITLE } description={ SITE_DESCRIPTION } />
+    <Head title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body class="is-preload">
     <Header />
@@ -23,20 +23,31 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
           <li>
             <a href="/home/social"><button class="button">Social</button></a>
           </li>
-          <li><a href="/home/economic"><button class="button">Economic</button></a></li>
           <li>
-            <a href="/home/cultural"
-              ><button class="button">Cultural</button></a>
+            <a href="/home/economic"
+              ><button class="button">Economic</button></a>
+          </li>
+          <li>
+            <a href="/home/cultural"><button class="button">Cultural</button></a
+            >
           </li>
         </ul>
         <ul class="icons">
           <li>
-            <a href="/home/environmental"><button class="button">Environmental</button></a>
+            <a href="/home/environmental"
+              ><button class="button">Environmental</button></a
+            >
           </li>
-          <li><a href="/home/political"><button class="button">Political</button></a></li>
+          <li>
+            <a href="/home/political"
+              ><button class="button">Political</button></a>
+          </li>
+        </ul>
+        <ul class="icons">
           <li>
             <a href="/home/legal"
-              ><button class="button">Technological/Legal</button></a>
+              ><button class="button">Technological/Legal</button></a
+            >
           </li>
         </ul>
         <ul class="icons">
@@ -46,7 +57,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
           <li><a href="/space"><button class="button">Space</button></a></li>
           <li>
             <a href="/globalization"
-              ><button class="button">Globalization</button></a>
+              ><button class="button">Globalization</button></a
+            >
           </li>
         </ul>
       </div>
@@ -56,11 +68,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     </footer>
     <script src="../scripts/eventually/main.js"></script>
     <script>
-      addEventListener('load', () => {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log('Service Worker Registered'))
-            .catch(err => console.error('Service Worker Registration Failed', err));
+      addEventListener("load", () => {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(() => console.log("Service Worker Registered"))
+            .catch((err) =>
+              console.error("Service Worker Registration Failed", err)
+            );
         }
       });
     </script>
